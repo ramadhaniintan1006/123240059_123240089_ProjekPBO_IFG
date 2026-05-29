@@ -7,28 +7,37 @@ package Repository;
 import sistemmanajemenstasiun.connector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import Model.Kereta;
+import Model.Stasiun;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class KeretaRepository {
+public class StasiunRepository {
     private final connector connector;
 
-    public KeretaRepository() {
+    public StasiunRepository() {
+
         this.connector = new connector();
     }
 
-    public boolean tambahKereta(Kereta kereta) {
+    // =========================
+    // CREATE
+    // =========================
+    public boolean tambahStasiun(
+            Stasiun stasiun
+    ) {
 
         String sql =
-                "INSERT INTO kereta "
-                + "(nama_kereta, kelas, kapasitas) "
-                + "VALUES (?, ?, ?)";
+                "INSERT INTO stasiun "
+                + "(nama_stasiun, kota) "
+                + "VALUES (?, ?)";
 
         try {
 
@@ -40,17 +49,12 @@ public class KeretaRepository {
 
             stmt.setString(
                     1,
-                    kereta.getNamaKereta()
+                    stasiun.getNamaStasiun()
             );
 
             stmt.setString(
                     2,
-                    kereta.getKelas()
-            );
-
-            stmt.setInt(
-                    3,
-                    kereta.getKapasitas()
+                    stasiun.getKota()
             );
 
             return stmt.executeUpdate() > 0;
@@ -58,20 +62,24 @@ public class KeretaRepository {
         } catch (Exception e) {
 
             System.out.println(
-                    "Gagal tambah kereta : "
+                    "Gagal tambah stasiun : "
                     + e.getMessage()
             );
 
             return false;
         }
     }
-    
-    public ArrayList<Kereta> getAllKereta() {
 
-        ArrayList<Kereta> listKereta =
+    // =========================
+    // READ
+    // =========================
+    public ArrayList<Stasiun> getAllStasiun() {
+
+        ArrayList<Stasiun> list =
                 new ArrayList<>();
 
-        String sql = "SELECT * FROM kereta";
+        String sql =
+                "SELECT * FROM stasiun";
 
         try {
 
@@ -86,15 +94,14 @@ public class KeretaRepository {
 
             while (rs.next()) {
 
-                Kereta kereta =
-                        new Kereta(
-                                rs.getInt("id_kereta"),
-                                rs.getString("nama_kereta"),
-                                rs.getString("kelas"),
-                                rs.getInt("kapasitas")
+                Stasiun stasiun =
+                        new Stasiun(
+                                rs.getInt("id_stasiun"),
+                                rs.getString("nama_stasiun"),
+                                rs.getString("kota")
                         );
 
-                listKereta.add(kereta);
+                list.add(stasiun);
             }
 
         } catch (Exception e) {
@@ -105,17 +112,21 @@ public class KeretaRepository {
             );
         }
 
-        return listKereta;
+        return list;
     }
-    
-    public boolean updateKereta(Kereta kereta) {
+
+    // =========================
+    // UPDATE
+    // =========================
+    public boolean updateStasiun(
+            Stasiun stasiun
+    ) {
 
         String sql =
-                "UPDATE kereta "
-                + "SET nama_kereta = ?, "
-                + "kelas = ?, "
-                + "kapasitas = ? "
-                + "WHERE id_kereta = ?";
+                "UPDATE stasiun "
+                + "SET nama_stasiun = ?, "
+                + "kota = ? "
+                + "WHERE id_stasiun = ?";
 
         try {
 
@@ -127,22 +138,17 @@ public class KeretaRepository {
 
             stmt.setString(
                     1,
-                    kereta.getNamaKereta()
+                    stasiun.getNamaStasiun()
             );
 
             stmt.setString(
                     2,
-                    kereta.getKelas()
+                    stasiun.getKota()
             );
 
             stmt.setInt(
                     3,
-                    kereta.getKapasitas()
-            );
-
-            stmt.setInt(
-                    4,
-                    kereta.getIdKereta()
+                    stasiun.getIdStasiun()
             );
 
             return stmt.executeUpdate() > 0;
@@ -150,19 +156,24 @@ public class KeretaRepository {
         } catch (Exception e) {
 
             System.out.println(
-                    "Gagal update : "
+                    "Gagal update stasiun : "
                     + e.getMessage()
             );
 
             return false;
         }
     }
-    
-    public boolean deleteKereta(int idKereta) {
+
+    // =========================
+    // DELETE
+    // =========================
+    public boolean deleteStasiun(
+            int idStasiun
+    ) {
 
         String sql =
-                "DELETE FROM kereta "
-                + "WHERE id_kereta = ?";
+                "DELETE FROM stasiun "
+                + "WHERE id_stasiun = ?";
 
         try {
 
@@ -172,19 +183,18 @@ public class KeretaRepository {
             PreparedStatement stmt =
                     conn.prepareStatement(sql);
 
-            stmt.setInt(1, idKereta);
+            stmt.setInt(1, idStasiun);
 
             return stmt.executeUpdate() > 0;
 
         } catch (Exception e) {
 
             System.out.println(
-                    "Gagal delete : "
+                    "Gagal hapus stasiun : "
                     + e.getMessage()
             );
 
             return false;
         }
     }
-    
 }
