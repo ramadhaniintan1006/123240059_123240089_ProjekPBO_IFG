@@ -3,19 +3,105 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import Model.Jadwal;
+import Repository.JadwalRepository;
+
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.JOptionPane;
+import User.User;
 
 /**
  *
  * @author user
  */
 public class DashboardUser extends javax.swing.JFrame {
-
+    
+    private int idJadwalTerpilih = 0;
+    private User userLogin;
+    
     /**
      * Creates new form DashboardUser
      */
-    public DashboardUser() {
+    
+    public DashboardUser(User user) {
         initComponents();
+        
+        this.userLogin = user;
+        
+        tampilDataJadwal();
     }
+    
+    public void cariJadwal() {
+
+        String keyword =
+                txtCari.getText();
+
+        JadwalRepository repo =
+                new JadwalRepository();
+
+        ArrayList<Jadwal> list =
+                repo.cariJadwal(keyword);
+
+        DefaultTableModel model =
+                (DefaultTableModel)
+                tableJadwal.getModel();
+
+        model.setRowCount(0);
+
+        for (Jadwal jadwal : list) {
+
+            Object[] row = {
+
+                jadwal.getIdJadwal(),
+                jadwal.getTanggal(),
+                jadwal.getJamBerangkat(),
+                jadwal.getJamTiba(),
+                jadwal.getHarga(),
+                jadwal.getNamaKereta(),
+                jadwal.getAsal(),
+                jadwal.getTujuan()
+            };
+
+            model.addRow(row);
+        }
+}
+    
+    public void tampilDataJadwal() {
+
+    JadwalRepository repo =
+            new JadwalRepository();
+
+    ArrayList<Jadwal> list =
+            repo.getAllJadwal();
+
+    DefaultTableModel model =
+            (DefaultTableModel)
+            tableJadwal.getModel();
+
+    model.setRowCount(0);
+
+    for (Jadwal jadwal : list) {
+
+        Object[] row = {
+
+            jadwal.getIdJadwal(),
+            jadwal.getTanggal(),
+            jadwal.getJamBerangkat(),
+            jadwal.getJamTiba(),
+            jadwal.getHarga(),
+            jadwal.getNamaKereta(),
+            jadwal.getAsal(),
+            jadwal.getTujuan()
+
+        };
+
+        model.addRow(row);
+    }
+    
+    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,31 +113,151 @@ public class DashboardUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableJadwal = new javax.swing.JTable();
+        txtCari = new javax.swing.JTextField();
+        btnCari = new javax.swing.JButton();
+        btnPesanTiket = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Welcome User");
+        jLabel1.setText("Dashboard User");
+
+        tableJadwal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tanggal", "Jam Berangkat", "Jam Tiba", "Harga", "Nama Kereta", "Asal", "Tujuan"
+            }
+        ));
+        tableJadwal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableJadwalMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableJadwal);
+
+        txtCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariActionPerformed(evt);
+            }
+        });
+
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        btnPesanTiket.setText("Pesan Tiket");
+        btnPesanTiket.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesanTiketMouseClicked(evt);
+            }
+        });
+        btnPesanTiket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesanTiketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addGap(269, 269, 269))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnPesanTiket, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addContainerGap(542, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(txtCari))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnPesanTiket, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+        cariJadwal();
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnPesanTiketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesanTiketMouseClicked
+        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(
+            null,
+            "Jadwal yang dipilih: "
+            + idJadwalTerpilih
+          );
+    }//GEN-LAST:event_btnPesanTiketMouseClicked
+
+    private void btnPesanTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanTiketActionPerformed
+        // TODO add your handling code here:
+        if (idJadwalTerpilih == 0) {
+
+        JOptionPane.showMessageDialog(
+                null,
+                "Pilih jadwal terlebih dahulu!"
+        );
+
+        return;
+        }
+
+        PilihKursiForm form =
+                new PilihKursiForm(
+                        userLogin,
+                        idJadwalTerpilih
+                );
+
+        form.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_btnPesanTiketActionPerformed
+
+    private void tableJadwalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJadwalMouseClicked
+        // TODO add your handling code here:
+        int row = tableJadwal.getSelectedRow();
+
+        idJadwalTerpilih =
+                Integer.parseInt(
+                        tableJadwal
+                                .getValueAt(row, 0)
+                                .toString()
+                );
+    }//GEN-LAST:event_tableJadwalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -83,12 +289,17 @@ public class DashboardUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardUser().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnPesanTiket;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableJadwal;
+    private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 }

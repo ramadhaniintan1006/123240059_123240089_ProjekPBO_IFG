@@ -131,7 +131,7 @@ public class LoginForm extends javax.swing.JFrame {
             } else {
 
                 DashboardUser userDashboard =
-                        new DashboardUser();
+                        new DashboardUser(user);
 
                 userDashboard.setVisible(true);
             }

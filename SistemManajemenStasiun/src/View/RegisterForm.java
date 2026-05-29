@@ -122,6 +122,7 @@ public class RegisterForm extends javax.swing.JFrame {
         String.valueOf(txtPassword.getPassword());
 
     User user = new User(
+        0,
         nama,
         email,
         password,
