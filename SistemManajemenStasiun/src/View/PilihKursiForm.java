@@ -827,6 +827,17 @@ public class PilihKursiForm extends javax.swing.JFrame {
                     + kodeBooking
             );
             
+            Pembayaran pembayaran =
+            new Pembayaran(
+                kodeBooking,
+                nomorKursiTerpilih,
+                350000
+            );
+
+pembayaran.setVisible(true);
+
+dispose();
+            
             JButton btn =
                     getButtonByNomor(
                             nomorKursiTerpilih

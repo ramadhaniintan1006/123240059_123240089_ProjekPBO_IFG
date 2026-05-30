@@ -4,31 +4,39 @@
  */
 package View;
 
-import Repository.TiketDigitalRepository;
 import javax.swing.JOptionPane;
+import View.TiketDigital;
 
 /**
  *
  * @author tataa
  */
-public class TiketDigital extends javax.swing.JFrame {
+public class Pembayaran extends javax.swing.JFrame {
     
     private String kodeBooking;
+    private String kursi;
+    private double totalBayar;
 
     /**
-     * Creates new form TiketDigital
+     * Creates new form Pembayaran
      */
-    public TiketDigital() {
+    public Pembayaran() {
         initComponents();
     }
     
-    public TiketDigital(String kodeBooking) {
+    public Pembayaran(
+        String kodeBooking,
+        String kursi,
+        double totalBayar
+) {
 
     initComponents();
 
     this.kodeBooking = kodeBooking;
+    this.kursi = kursi;
+    this.totalBayar = totalBayar;
 
-    tampilDataTiket();
+    tampilData();
 }
 
     /**
@@ -47,18 +55,19 @@ public class TiketDigital extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Tiket Digital KA");
+        jLabel1.setText("Pembayaran");
 
         jLabel2.setText("kode booking :");
 
-        jLabel3.setText("status :");
+        jLabel3.setText("kursi :");
 
-        jLabel4.setText("tanggal pemesanan :");
+        jLabel4.setText("total bayar :");
 
         jLabel5.setText("jLabel5");
 
@@ -66,118 +75,132 @@ public class TiketDigital extends javax.swing.JFrame {
 
         jLabel7.setText("jLabel7");
 
-        jButton1.setText("cetak pdf");
-
-        jButton2.setText("kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transfer Bank", "Qris", "E-Wallet", " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
+
+        jButton1.setText("bayar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("kembali");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
+                        .addGap(176, 176, 176)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addGap(67, 67, 67))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(82, 82, 82)
                 .addComponent(jButton1)
-                .addGap(73, 73, 73)
+                .addGap(49, 49, 49)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
-                .addGap(32, 32, 32)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6))
-                .addGap(39, 39, 39)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
-                .addGap(57, 57, 57)
+                .addGap(38, 38, 38)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(
-        java.awt.event.ActionEvent evt
-) {
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String metode =
+            jComboBox1.getSelectedItem()
+                      .toString();
 
     JOptionPane.showMessageDialog(
             this,
-            "Fitur Cetak PDF masih dalam pengembangan"
+            "Pembayaran berhasil!\n"
+            + "Metode: "
+            + metode
     );
-}
-    
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void tampilDataTiket() {
-
-    TiketDigitalRepository repo =
-            new TiketDigitalRepository();
-
-    Model.TiketDigital tiket =
-            repo.getTiketByKodeBooking(
+    TiketDigital tiket =
+            new TiketDigital(
                     kodeBooking
             );
 
-    if (tiket != null) {
+    tiket.setVisible(true);
 
-        jLabel5.setText(
-                tiket.getKodeBooking()
-        );
+    dispose();
 
-        jLabel6.setText(
-                tiket.getStatus()
-        );
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        jLabel7.setText(
-                tiket.getTanggalPesan()
-        );
+    private void jButton2ActionPerformed(
+        java.awt.event.ActionEvent evt
+) {
 
-    } else {
+    dispose();
+}
+    
+    private void tampilData() {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Data tiket tidak ditemukan!"
-        );
-    }
+    jLabel5.setText(
+            kodeBooking
+    );
+
+    jLabel6.setText(
+            kursi
+    );
+
+    jLabel7.setText(
+            "Rp " + totalBayar
+    );
 }
     
     /**
@@ -197,20 +220,20 @@ public class TiketDigital extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TiketDigital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TiketDigital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TiketDigital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TiketDigital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TiketDigital().setVisible(true);
+                new Pembayaran().setVisible(true);
             }
         });
     }
@@ -218,6 +241,7 @@ public class TiketDigital extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

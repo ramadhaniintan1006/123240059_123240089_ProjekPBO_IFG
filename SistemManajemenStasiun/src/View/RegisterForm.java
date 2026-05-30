@@ -139,6 +139,10 @@ public class RegisterForm extends javax.swing.JFrame {
             null,
             "Register berhasil!"
         );
+        
+        new LoginForm().setVisible(true);
+
+        dispose();
 
     } else {
 

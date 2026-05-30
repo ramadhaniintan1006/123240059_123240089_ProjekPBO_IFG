@@ -122,6 +122,8 @@ public class LoginForm extends javax.swing.JFrame {
 
             // CEK ROLE
             if (user.getRole().equals("admin")) {
+                
+                System.out.println("ADMIN TERDETEKSI");
 
                 DashboardAdmin admin =
                         new DashboardAdmin();
@@ -129,7 +131,9 @@ public class LoginForm extends javax.swing.JFrame {
                 admin.setVisible(true);
 
             } else {
-
+                
+                System.out.println("USER TERDETEKSI");
+                
                 DashboardUser userDashboard =
                         new DashboardUser(user);
 
