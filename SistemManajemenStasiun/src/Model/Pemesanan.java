@@ -69,4 +69,10 @@ public class Pemesanan {
     public String getTanggalPesan() {
         return tanggalPesan;
     }
+    
+    public String getInfo() {
+
+    return "Kode Booking : "
+            + kodeBooking;
+    }
 }
