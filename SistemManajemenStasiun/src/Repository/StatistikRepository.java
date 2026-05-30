@@ -58,7 +58,7 @@ public class StatistikRepository {
 
             String sqlUser =
                     "SELECT COUNT(*) total "
-                    + "FROM user";
+                    + "FROM users";
 
             PreparedStatement stmtUser =
                     conn.prepareStatement(
@@ -76,8 +76,23 @@ public class StatistikRepository {
                         );
             }
 
-            totalPendapatan =
-                    totalTiket * 50000;
+            String sqlPendapatan =
+    "SELECT SUM(j.harga) total " +
+    "FROM pemesanan p " +
+    "JOIN jadwal j ON p.id_jadwal = j.id_jadwal " +
+    "WHERE p.status = 'Selesai'";
+
+PreparedStatement stmtPendapatan =
+        conn.prepareStatement(sqlPendapatan);
+
+ResultSet rsPendapatan =
+        stmtPendapatan.executeQuery();
+
+if (rsPendapatan.next()) {
+
+    totalPendapatan =
+            rsPendapatan.getDouble("total");
+};
 
         } catch(Exception e){
 
