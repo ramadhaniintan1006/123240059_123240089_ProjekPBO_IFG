@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import Model.Jadwal;
 import Repository.JadwalRepository;
 import Repository.KursiRepository;
+import Utils.UIStyle;
 
 /**
  *
@@ -20,6 +21,21 @@ public class KelolaJadwalForm extends javax.swing.JFrame {
      */
     public KelolaJadwalForm() {
         initComponents();
+        
+        UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleTambahButton(btnTambahJadwal);
+
+UIStyle.styleTextField(txtKereta1);
+UIStyle.styleTextField(txtAsal);
+UIStyle.styleTextField(txtTujuan);
+UIStyle.styleTextField(txtTanggal);
+UIStyle.styleTextField(txtJamBerangkat);
+UIStyle.styleTextField(txtJamTiba);
+UIStyle.styleTextField(txtHarga);
+
     }
 
     /**

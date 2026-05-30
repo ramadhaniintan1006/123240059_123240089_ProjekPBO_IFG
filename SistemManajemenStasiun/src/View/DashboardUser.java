@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JOptionPane;
 import User.User;
+import Utils.UIStyle;
 
 /**
  *
@@ -28,6 +29,18 @@ public class DashboardUser extends javax.swing.JFrame {
     
     public DashboardUser(User user) {
         initComponents();
+        
+        UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleMenuButton(btnCari);
+UIStyle.styleMenuButton(btnPesanTiket);
+UIStyle.styleMenuButton(jButton1);
+
+UIStyle.styleTextField(txtCari);
+
+UIStyle.styleTable(tableJadwal);
         
         this.userLogin = user;
         

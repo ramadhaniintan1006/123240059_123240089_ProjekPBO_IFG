@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import Model.Stasiun;
 import Repository.StasiunRepository;
+import Utils.UIStyle;
 
 /**
  *
@@ -26,6 +27,20 @@ public class StasiunForm extends javax.swing.JFrame {
     
     public StasiunForm() {
         initComponents();
+        
+        UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleTambahButton(btnTambahJadwal);
+UIStyle.styleUpdateButton(btnUpdate);
+UIStyle.styleDeleteButton(btnDelete);
+
+UIStyle.styleTextField(txtNamaStasiun);
+UIStyle.styleTextField(txtKota);
+
+UIStyle.styleTable(tableStasiun);
+
         tampilDataStasiun();
     }
     

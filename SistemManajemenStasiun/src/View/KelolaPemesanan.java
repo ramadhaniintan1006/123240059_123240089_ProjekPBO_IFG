@@ -6,6 +6,7 @@ package View;
 
 import Model.Pemesanan;
 import Repository.KelolaPemesananRepository;
+import Utils.UIStyle;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,24 @@ public class KelolaPemesanan extends javax.swing.JFrame {
    public KelolaPemesanan() {
 
     initComponents();
+    
+    UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleMenuButton(jButton2); // Cari
+
+UIStyle.styleTambahButton(jButton3); // Validasi
+
+UIStyle.styleDeleteButton(jButton4); // Batalkan
+
+UIStyle.styleMenuButton(jButton5); // Refresh
+
+UIStyle.styleMenuButton(jButton6); // Kembali
+
+UIStyle.styleTextField(jTextField1);
+
+UIStyle.styleTable(jTable1);
 
     repo =
             new KelolaPemesananRepository();

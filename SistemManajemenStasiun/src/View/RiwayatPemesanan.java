@@ -17,6 +17,8 @@ import Repository.TiketDigitalRepository;
 
 import Model.TiketDigital;
 import User.User;
+import Utils.UIStyle;
+
 
 /**
  *
@@ -29,6 +31,22 @@ public class RiwayatPemesanan extends javax.swing.JFrame {
 public RiwayatPemesanan(User userLogin) {
 
     initComponents();
+    
+    UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleMenuButton(jButton1); // Cari
+
+UIStyle.styleMenuButton(jButton2); // Lihat Tiket
+
+UIStyle.styleMenuButton(jButton3); // Refresh
+
+UIStyle.styleMenuButton(jButton4); // Kembali
+
+UIStyle.styleTextField(jTextField1);
+
+UIStyle.styleTable(jTable1);
 
     this.userLogin = userLogin;
 

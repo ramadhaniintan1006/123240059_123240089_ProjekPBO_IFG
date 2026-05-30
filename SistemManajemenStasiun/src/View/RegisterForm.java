@@ -6,6 +6,8 @@ package View;
 import javax.swing.JOptionPane;
 import User.User;
 import User.UserRepository;
+import Utils.UIStyle;
+
 /**
  *
  * @author user
@@ -17,6 +19,18 @@ public class RegisterForm extends javax.swing.JFrame {
      */
     public RegisterForm() {
         initComponents();
+        
+        UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel2);
+
+UIStyle.styleTextField(txtNama);
+UIStyle.styleTextField(txtEmail);
+
+UIStyle.stylePasswordField(txtPassword);
+
+UIStyle.styleMenuButton(btnRegister);
+
     }
 
     /**

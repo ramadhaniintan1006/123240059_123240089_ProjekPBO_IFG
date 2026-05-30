@@ -7,6 +7,8 @@ package View;
 import User.User;
 import Repository.KursiRepository;
 import Repository.PemesananRepository;
+import Utils.UIStyle;
+
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
@@ -42,6 +44,12 @@ public class PilihKursiForm extends javax.swing.JFrame {
     public PilihKursiForm( User userLogin,
         int idJadwal) {
         initComponents();
+        
+        UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleMenuButton(btnPesan);
         
         this.userLogin = userLogin;
 

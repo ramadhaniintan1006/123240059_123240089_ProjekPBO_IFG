@@ -6,6 +6,7 @@ package View;
 
 import javax.swing.JOptionPane;
 import View.TiketDigital;
+import Utils.UIStyle;
 
 /**
  *
@@ -22,8 +23,9 @@ public class Pembayaran extends javax.swing.JFrame {
      */
     public Pembayaran() {
         initComponents();
+        
     }
-    
+   
     public Pembayaran(
         String kodeBooking,
         String kursi,
@@ -31,6 +33,16 @@ public class Pembayaran extends javax.swing.JFrame {
 ) {
 
     initComponents();
+
+    UIStyle.styleFrame(this);
+
+    UIStyle.styleTitle(jLabel1);
+
+    UIStyle.styleMenuButton(jButton1);
+
+    UIStyle.styleMenuButton(jButton2);
+
+    UIStyle.styleComboBox(jComboBox1);
 
     this.kodeBooking = kodeBooking;
     this.kursi = kursi;

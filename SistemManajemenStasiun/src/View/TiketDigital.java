@@ -6,6 +6,7 @@ package View;
 
 import Repository.TiketDigitalRepository;
 import javax.swing.JOptionPane;
+import Utils.UIStyle;
 
 /**
  *
@@ -20,11 +21,21 @@ public class TiketDigital extends javax.swing.JFrame {
      */
     public TiketDigital() {
         initComponents();
+       
+
     }
     
     public TiketDigital(String kodeBooking) {
 
     initComponents();
+    
+    UIStyle.styleFrame(this);
+
+UIStyle.styleTitle(jLabel1);
+
+UIStyle.styleMenuButton(jButton1); // Cetak PDF
+
+UIStyle.styleMenuButton(jButton2); // Kembali
 
     this.kodeBooking = kodeBooking;
 
