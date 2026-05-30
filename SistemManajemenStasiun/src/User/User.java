@@ -9,21 +9,30 @@ package User;
  * @author user
  */
 public class User {
+    private int idUser;
+
     private String nama;
     private String email;
     private String password;
     private String role;
 
     public User(
+            int idUser,
             String nama,
             String email,
             String password,
             String role
     ) {
+
+        this.idUser = idUser;
         this.nama = nama;
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public int getIdUser() {
+        return idUser;
     }
 
     public String getNama() {

@@ -76,6 +76,7 @@ public class UserRepository {
             if (rs.next()) {
 
                 return new User(
+                        rs.getInt("id_user"),
                         rs.getString("nama"),
                         rs.getString("email"),
                         rs.getString("password"),
